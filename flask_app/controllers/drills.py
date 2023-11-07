@@ -1,9 +1,18 @@
 from fileinput import filename
+from werkzeug.utils import secure_filename
 from flask_app import app
+import os
+from os.path import join, dirname, realpath
+
 from flask import render_template, redirect, request, session, flash, url_for
 from flask_app.models.drill import Drill
 from flask_app.models.user import User
 
+UPLOAD_FOLDER = "static/images"
+#UPLOAD_FOLDER = join(dirname(realpath(__file__)), '/static/images/')
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #Submit drill (from the new drill page)
 @app.route('/drill', methods=['POST'])
@@ -21,6 +30,10 @@ def submit_drill():
     if not Drill.validate_drill(request.form):
         return redirect('/drill/new')
     else:
+        fil = request.files['file']
+        if fil.filename != '':
+            #fil = request.files['file']
+            fil.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'],request.form['name']))
         Drill.save(data)
         return redirect("/dashboard")
 
@@ -60,6 +73,7 @@ def drill_edit(id):
     return render_template('edit.html',drill=drill, user=user)
 
 #Update POST used in the edit page
+
 @app.route('/drill/update', methods=['POST'])
 def drill_update():
     if 'user_id' not in session:
@@ -76,6 +90,9 @@ def drill_update():
     if not Drill.validate_drill(request.form):
         return redirect(f'/drill/{id}/edit')
     else:
+        fil = request.files['file']
+        if fil.filename != '':
+            fil.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'],request.form['name']))
         Drill.update(data)
         return redirect("/dashboard")
 

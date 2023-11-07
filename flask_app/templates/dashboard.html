@@ -10,9 +10,10 @@
 </head>
 <body class="bg-light">
     <div class="row">
-        <h2 class="col-md-7 offset-md-1 my-auto">{{dif}} <small class="text-muted">Table Tennis Drills</small></h2>
-        <a class="col-1" href="/dashboard">Home</a>
-        <h7 class="col-1 fst-italic">Hello {{user.first_name}}</h7>
+        <img class="col-md-1 offset-md-1 my-auto" style="max-width:75px; max-height:75px; width: auto; height: auto;" src="https://cdn.pixabay.com/photo/2022/05/23/16/05/table-tennis-7216580_1280.png">
+        <h2 class="col-md-7 my-auto">{{dif}} <small class="text-muted">Table Tennis Drills</small></h2>
+        <a class="col-1 my-auto fw-bold" href="/dashboard">Home</a>
+        <h7 class="col-1 fst-italic my-auto">Hello {{user.first_name}}</h7>
         <a href="/logout" class="col-1 btn btn-primary align-self-end">Logout</a>
     </div>
     <div class="row mt-5">
@@ -22,6 +23,7 @@
             <a class="col-1 btn btn-info" href="/drills/easy">Easy</a>
             <a class="col-1 btn btn-warning" href="/drills/medium">Medium</a>
             <a  class="col-1 btn btn-danger" href="/drills/hard">Hard</a>
+            <a  class="col-1 btn btn-light" href="/dashboard">All</a>
         </td>
     </div>
     <div class="col-10 mx-auto">
@@ -42,11 +44,11 @@
                         <td>{{drill.difficulty}}</td>
                         <td>{{drill.creator.first_name}} {{drill.creator.last_name}}</td>
                         {% if session['user_id'] == drill.creator.id %}
-                            <td><a href="/drill/{{drill.id}}">View</a> |
-                            <a href="/drill/{{drill.id}}/edit">Edit</a> |
-                            <a href="/drill/{{drill.id}}/delete">Delete</a></td>
+                            <td><a class = "btn btn-outline-primary" href="/drill/{{drill.id}}">View</a>
+                            <a class = "btn btn-outline-primary" href="/drill/{{drill.id}}/edit">Edit</a>
+                            <a class = "btn btn-outline-primary" href="/drill/{{drill.id}}/delete">Delete</a></td>
                         {% else %}
-                            <td><a href="/drill/{{drill.id}}">View</a></td>
+                            <td><a class = "btn btn-outline-primary" href="/drill/{{drill.id}}">View</a></td>
                         {% endif %}
                     </tr>
                 {% endfor %}

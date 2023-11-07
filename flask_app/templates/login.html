@@ -12,7 +12,7 @@
     <h1 class="text-primary col-md-6 d-flex justify-content-center mx-auto">Table Tennis Drills DB</h1>
     <div class="d-flex col-12  justify-content-center mx-auto" style="gap: 50px">
         <div class="m-3 p-4">
-            <h1 class="block">Register</h1>
+            <h3 class="block">Register</h3>
                 <form action="/register" method="POST" class="">
                     <div class="form-group mt-2 row">
                         <label for="first_name" class="col-sm-4 col-form-label">First Name:</label>
@@ -52,7 +52,7 @@
                 </form>
         </div>
         <div class="m-3 p-4">
-            <h1 class="block">Login</h1>
+            <h3 class="block">Login</h3>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}

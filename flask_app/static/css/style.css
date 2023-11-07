@@ -7,7 +7,13 @@ body {
     background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg);
     background-repeat: no-repeat;
     background-position: center center;
-    
     }
+
+img {
+    max-width:400px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+}
 
 

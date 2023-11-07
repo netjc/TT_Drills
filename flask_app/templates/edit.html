@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class="row">
-        <h2 class="col-md-7 offset-md-1 my-auto">Add a New TT Drill</h2>
-        <a class="col-1" href="/dashboard">Home</a>
+        <h2 class="col-md-7 offset-md-1 my-auto">Edit Drill</h2>
+        <a class="col-1 fw-bold" href="/dashboard">Home</a>
         <h7 class="col-1 fst-italic">Hello {{user.first_name}}</h7>
         <a href="/logout" class="col-1 btn btn-primary align-self-end">Logout</a>
     </div>
-    <form action="/drill" method="post">
+    <form action="/drill/update" method="post" enctype = "multipart/form-data">
         <div class="d-flex col-12  mx-auto" style="gap: 50px"> 
             <div class="m-3 p-4">
                 {% with messages = get_flashed_messages() %}
@@ -43,7 +43,13 @@
                         <textarea class="form-control bg-dark text-light" rows="5" name="steps" id="steps">{{drill.steps}}</textarea>
                     </div>
                 </div>
-                <input type="hidden" name="secret" value="{{session['user_id']}}">
+                <div class="form-group mt-3 row">
+                    <label for="file" class="col-sm-4 col-form-label">Upload File:</label>
+                    <div class="col-sm-8">
+                        <input type = "file" name = "file" />
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="{{drill.id}}">
                 <div class="form-group mt-3 row">
                     <p class="mt-5 mx-auto">Choose your difficulty level:</p>
                     <div class="col-sm-8">
@@ -56,7 +62,7 @@
                     </div>
                     <div class="row form-group">
                     <a href="/dashboard" class="col-3 btn btn-danger mt-5 mx-auto">Back</a>
-                    <input type="submit" value="Add Drill" class="mt-5 btn btn-success col-3 align-self-end">
+                    <input type="submit" value="Update" class="mt-5 btn btn-success col-3 align-self-end">
                     </div>
                 </div>
             </div>
